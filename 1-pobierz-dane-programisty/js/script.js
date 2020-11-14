@@ -23,9 +23,9 @@ const getData = () => {
         let pBody = document.createElement('p');
 
         pUserId.innerText = `User ID: ${data.userId}`
-        pId.innerText = `User ID: ${data.id}`
-        pTitle.innerText = `User ID: ${data.title}`
-        pBody.innerText = `User ID: ${data.body}`
+        pId.innerText = `ID: ${data.id}`
+        pTitle.innerText = `Title: ${data.title}`
+        pBody.innerText = `Body: ${data.body}`
 
         $('#dane-programisty').append(pUserId);
         $('#dane-programisty').append(pId);
