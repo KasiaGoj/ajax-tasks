@@ -1,83 +1,51 @@
-/* Po załadowaniu się strony ustaw nasłuch zdarzenia click na tym przycisku.
-Funkcją obsługującą to zdarzenie będzie funkcja anonimowa (oczywiście musisz ją stworzyć).
-Funkcja anonimowa obsługująca zdarzenie click pobiera z serwera objekt JSON.
+/* Adres URL do API na serwerze: https://akademia108.pl/api/ajax/get-post.php
 
-Adres URL do API na serwerze: https://akademia108.pl/api/ajax/get-post.php
+Po pobraniu danych w formacie JSON wyciąg z nich:
 
-Po pobraniu danych w formacie JSON wyciągnij z nich:
 userId
 id
 title
-body
-a następnie dodaj te dane do strony (w dowolnym miejscu i w dowolny sposób).
+body */
 
-Dodatkowe uwagi:
-Napisz kod za pomocą biblioteki jquery, a do pobierania danych użyj:
-w pierwszej wersji funkcji $.get(),
-a w drugiej wersji funkcji $.getJSON(). */
+let btnGetData = document.getElementById('get-data');
 
-$(document).ready(function() {
+console.log(btnGetData);
 
-    $('#get-data').click(function() {
+const getData = () => {
+    fetch('https://akademia108.pl/api/ajax/get-post.php')
 
-        /* pierwsza wersja funkcji $.get(), */
+    .then(response => response.json())
+    .then((data) => {
 
-        // $.get('https://akademia108.pl/api/ajax/get-post.php').done(function(data) {
-        //     let pUserId = $('<p></p>').text(`User ID: ${data.userId}`);
-        //     let pId = $('<p></p>').text(`Post ID: ${data.id}`);
-        //     let pTitle = $('<p></p>').text(`Title: ${data.title}`);
-        //     let pBody = $('<p></p>').text(`Body: ${data.body}`);
-        //     let hr = $('<hr />');
+        let pUserId = document.createElement('p');
+        let pId = document.createElement('p');
+        let pTitle = document.createElement('p');
+        let pBody = document.createElement('p');
 
-        //     // $('body').append(pUserId);
-        //     // $('body').append(pId);
-        //     // $('body').append(pTitle);
-        //     // $('body').append(pBody);
-        //     // $('body').append(hr);
+        pUserId.innerText = `User ID: ${data.userId}`
+        pId.innerText = `ID: ${data.id}`
+        pTitle.innerText = `Title: ${data.title}`
+        pBody.innerText = `Body: ${data.body}`
 
-        //     let jqBody = $('body');
+        $('#dane-programisty').append(pUserId);
+        $('#dane-programisty').append(pId);
+        $('#dane-programisty').append(pTitle);
+        $('#dane-programisty').append(pBody);
 
-        //     jqBody.append(pUserId);
-        //     jqBody.append(pId);
-        //     jqBody.append(pTitle);
-        //     jqBody.append(pBody);
-        //     jqBody.append(hr);
+        // document.body.appendChild(pUserId);
+        // document.body.appendChild(pId);
+        // document.body.appendChild(pTitle);
+        // document.body.appendChild(pBody);
 
-        
-        //     // console.log(data);
-        // })
-        // .fail(function(error) {
-        //     console.error(error);
-        // });
-
-        /* druga wersja funkcji $.getJSON() - pobierać monzna tylko dane w formacie json */
-
-        $.getJSON('https://akademia108.pl/api/ajax/get-post.php').done(function(data) {
-            let pUserId = $('<p></p>').text(`User ID: ${data.userId}`);
-            let pId = $('<p></p>').text(`Post ID: ${data.id}`);
-            let pTitle = $('<p></p>').text(`Title: ${data.title}`);
-            let pBody = $('<p></p>').text(`Body: ${data.body}`);
-            let hr = $('<hr />');
-
-            // $('body').append(pUserId);
-            // $('body').append(pId);
-            // $('body').append(pTitle);
-            // $('body').append(pBody);
-            // $('body').append(hr);
-
-            let jqBody = $('body');
-
-            jqBody.append(pUserId);
-            jqBody.append(pId);
-            jqBody.append(pTitle);
-            jqBody.append(pBody);
-            jqBody.append(hr);
-
-        
-            // console.log(data);
-        })
-        .fail(function(error) {
-            console.error(error);
-        });
-    });
-});
+        // console.log(data);
+        console.log(data.userId);
+        console.log(data.id);
+        console.log(data.title);
+        console.log(data.body);
+    })
+    .catch(error => {
+        console.error(error);
+    })
+}
+ 
+btnGetData.addEventListener('click', getData);
