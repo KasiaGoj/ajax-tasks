@@ -1,0 +1,46 @@
+<!-- Wykorzystując wiedzę na temat AJAXa oraz jQuery napisz aplikację, która wyświetla zmiany kursu waluty Bitcoin w stosunku do PLN.
+
+Aktualny kurs w formie obiektu JSON jest dostępny na serwerze (API) pod adresem https://blockchain.info/pl/ticker
+
+Aplikacja ma działać w następujący sposób:
+
+Po kliknięciu w przycisk "Pobierz kurs Bitcoin" pobieramy aktualny kurs BITCOIN/PLN.
+
+Porównujemy go z ostatnio pobranym kursem i zależnie od tego czy kurs wzrósł, nie zmienił się, czy zmalał ustawiamy strzałeczki przy kursie.
+
+Strzałeczki robimy za pomocą biblioteki FontAwesome. Jeśli kurs wzrósł (zielona strzałka w górę), zmalał (czerwona strzałka w dół), czy pozostał bez zmian (niebieska kreska).
+
+Przykładowy wygląd i elementy aplikacji dostępne są w załączonej grafice.
+
+Zadanie domowe zrób za pomocą GitHub Pages i podeślij link.
+
+Podpowiedź przed wysłaniem zadania do sprawdzenia:
+- pracując z mechanizmem AJAX używaj wbudowanych funkcji jQuery
+- do pobrania danych metody jQuery $.getJSON() - opis działania metody http://api.jquery.com/jquery.getjson/
+
+Edytuj załączone pliki
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+     <link rel="stylesheet" href="css/style.css">
+ </head>
+ <body>
+    <h1>Aktualny kurs Bitcoin do PLN</h1> 
+    <h2>Kupno</h2>
+    <p id="kurs-kupno" btc="0"></p><i class="fas fa-angle-right"></i>
+  
+    <h2>Sprzedaz</h2>
+    <p id="kurs-sprzedaz" btc="0"></p><i class="fas fa-angle-right"></i></br>
+
+    <button id="get-data">Pobierz kurs BITCOIN</button>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/script.js"></script>
+ </body>
+ </html>
